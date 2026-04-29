@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pudget — Keuangan Pribadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo" id="logoFull">
+      <!-- Pudget Logo SVG inline -->
+      <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" rx="14" fill="#eef2d8"/>
+        <!-- L shape -->
+        <rect x="22" y="15" width="22" height="58" rx="6" fill="#4a7c3f"/>
+        <rect x="22" y="62" width="42" height="11" rx="5" fill="#4a7c3f"/>
+        <!-- exclamation top -->
+        <rect x="56" y="15" width="22" height="36" rx="6" fill="#4a7c3f"/>
+        <!-- dot -->
+        <circle cx="67" cy="77" r="9" fill="#1e3a1e"/>
+      </svg>
+      <span class="logo-text">Pudget</span>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="#" class="nav-item active" data-page="dashboard">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="#" class="nav-item" data-page="wallets">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/></svg></span>
+      <span class="nav-label">Rekening & Dompet</span>
+    </a>
+    <a href="#" class="nav-item" data-page="income">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></svg></span>
+      <span class="nav-label">Pemasukan</span>
+    </a>
+    <a href="#" class="nav-item" data-page="outcome">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/></svg></span>
+      <span class="nav-label">Pengeluaran</span>
+    </a>
+    <a href="#" class="nav-item" data-page="debt">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+      <span class="nav-label">Hutang & Piutang</span>
+    </a>
+    <a href="#" class="nav-item" data-page="bills">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></span>
+      <span class="nav-label">Tagihan</span>
+    </a>
+    <a href="#" class="nav-item" data-page="budget">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+      <span class="nav-label">Anggaran</span>
+    </a>
+    <a href="#" class="nav-item" data-page="goals">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+      <span class="nav-label">Target Tabungan</span>
+    </a>
+    <a href="#" class="nav-item" data-page="calendar">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="nav-label">Kalender</span>
+    </a>
+    <a href="#" class="nav-item" data-page="report">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+      <span class="nav-label">Laporan</span>
+    </a>
+    <a href="#" class="nav-item" data-page="settings">
+      <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+      <span class="nav-label">Pengaturan</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-card" id="userCard">
+      <div class="user-avatar" id="userAvatarSidebar">P</div>
+      <div class="user-meta">
+        <span class="user-name" id="userNameSidebar">Pengguna</span>
+        <span class="user-sub" id="userCurSidebar">IDR</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Sidebar overlay for mobile -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════ -->
+<main class="main-content" id="mainContent">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar-title-wrap">
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+        <!-- DATE RANGE PICKER -->
+        <div class="date-range-bar" id="dateRangeBar">
+          <div class="dr-tabs">
+            <button class="dr-tab active" data-range="month">Bulan</button>
+            <button class="dr-tab" data-range="week">Minggu</button>
+            <button class="dr-tab" data-range="day">Hari</button>
+            <button class="dr-tab" data-range="custom">Kustom</button>
+          </div>
+          <div class="dr-nav">
+            <button class="dr-arrow" id="drPrev">&#8592;</button>
+            <span class="dr-label" id="drLabel">—</span>
+            <button class="dr-arrow" id="drNext">&#8594;</button>
+          </div>
+          <div class="dr-custom" id="drCustom" style="display:none">
+            <input type="date" class="dr-input" id="drFrom"/>
+            <span>—</span>
+            <input type="date" class="dr-input" id="drTo"/>
+            <button class="btn btn-xs btn-primary" id="drApply">Terapkan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <!-- Currency rate badge -->
+      <div class="rate-badge" id="rateBadge" title="Kurs USD/IDR">
+        <span class="rate-icon">💱</span>
+        <span id="rateVal">—</span>
+      </div>
+      <!-- Theme toggle -->
+      <button class="theme-btn" id="themeToggle" title="Toggle tema">
+        <span id="themeIcon">🌙</span>
+      </button>
+      <!-- Notification bell -->
+      <button class="notif-btn" id="notifBtn" title="Reminder tagihan">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot" id="notifDot" style="display:none"></span>
+      </button>
+      <button class="btn btn-primary topbar-add-btn" id="quickAddBtn">+ Transaksi</button>
+      <div class="topbar-avatar" id="topbarAvatar" onclick="navigateTo('settings')">P</div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-content">
+
+    <!-- ══ DASHBOARD ══ -->
+    <section id="page-dashboard" class="page active">
+      <div class="summary-strip">
+        <div class="scard scard-balance">
+          <div class="scard-label">Saldo Bersih</div>
+          <div class="scard-amount" id="totalBalance">Rp 0</div>
+          <div class="scard-period" id="balancePeriod">—</div>
+        </div>
+        <div class="scard scard-income">
+          <div class="scard-label">Pemasukan</div>
+          <div class="scard-amount" id="totalIncome">Rp 0</div>
+          <div class="scard-trend" id="incomeTrend"></div>
+        </div>
+        <div class="scard scard-outcome">
+          <div class="scard-label">Pengeluaran</div>
+          <div class="scard-amount" id="totalOutcome">Rp 0</div>
+          <div class="scard-trend" id="outcomeTrend"></div>
+        </div>
+        <div class="scard scard-debt">
+          <div class="scard-label">Hutang Aktif</div>
+          <div class="scard-amount" id="totalDebtCard">Rp 0</div>
+          <div class="scard-sub">belum lunas</div>
+        </div>
+        <div class="scard scard-bills">
+          <div class="scard-label">Tagihan Pending</div>
+          <div class="scard-amount" id="totalBillsCard">Rp 0</div>
+          <div class="scard-sub" id="billsCount">0 tagihan</div>
+        </div>
+      </div>
+
+      <!-- Wallet row -->
+      <div class="wallet-row" id="dashWallets"></div>
+
+      <div class="dash-grid">
+        <!-- Chart + pie -->
+        <div class="panel dash-chart-panel">
+          <div class="panel-header">
+            <h2>Arus Kas</h2>
+            <div class="chart-legend">
+              <span class="leg leg-in">Masuk</span>
+              <span class="leg leg-out">Keluar</span>
+            </div>
+          </div>
+          <div class="bar-chart-wrap">
+            <div class="chart-bars" id="monthlyChart"></div>
+          </div>
+        </div>
+
+        <div class="panel dash-pie-panel">
+          <div class="panel-header"><h2>Kategori Pengeluaran</h2></div>
+          <div class="pie-wrap">
+            <canvas id="pieChart" width="180" height="180"></canvas>
+            <div class="pie-legend" id="pieLegend"></div>
+          </div>
+        </div>
+
+        <!-- Recent transactions -->
+        <div class="panel dash-tx-panel">
+          <div class="panel-header">
+            <h2>Transaksi Terbaru</h2>
+            <a href="#" class="panel-link" data-page="income">Lihat semua</a>
+          </div>
+          <div class="tx-list" id="recentTransactions">
+            <div class="empty-state">Belum ada transaksi</div>
+          </div>
+        </div>
+
+        <!-- Upcoming bills -->
+        <div class="panel dash-bills-panel">
+          <div class="panel-header">
+            <h2>Tagihan Mendatang</h2>
+            <a href="#" class="panel-link" data-page="bills">Lihat semua</a>
+          </div>
+          <div id="upcomingBills">
+            <div class="empty-state">Tidak ada tagihan tertunda</div>
+          </div>
+        </div>
+
+        <!-- Goals -->
+        <div class="panel dash-goals-panel">
+          <div class="panel-header">
+            <h2>Target Tabungan</h2>
+            <a href="#" class="panel-link" data-page="goals">Lihat semua</a>
+          </div>
+          <div id="dashboardGoals">
+            <div class="empty-state">Belum ada target</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ WALLETS ══ -->
+    <section id="page-wallets" class="page">
+      <div class="page-toolbar">
+        <span class="toolbar-info">Total semua rekening: <strong id="totalWalletBal">Rp 0</strong></span>
+        <button class="btn btn-primary" id="addWalletBtn">+ Tambah Rekening</button>
+      </div>
+      <div class="wallet-cards" id="walletCards">
+        <div class="empty-state">Belum ada rekening/dompet</div>
+      </div>
+    </section>
+
+    <!-- ══ PEMASUKAN ══ -->
+    <section id="page-income" class="page">
+      <div class="page-toolbar">
+        <div class="filter-row">
+          <select class="sel" id="incomeCatFilter"><option value="">Semua Kategori</option></select>
+          <select class="sel" id="incomeWalletFilter"><option value="">Semua Rekening</option></select>
+        </div>
+        <button class="btn btn-primary" id="addIncomeBtn">+ Tambah Pemasukan</button>
+      </div>
+      <div class="table-panel">
+        <table class="dtable">
+          <thead><tr><th>Tanggal</th><th>Keterangan</th><th>Kategori</th><th>Rekening</th><th>Jumlah</th><th>Aksi</th></tr></thead>
+          <tbody id="incomeTableBody"><tr><td colspan="6" class="empty-state">Belum ada pemasukan</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ PENGELUARAN ══ -->
+    <section id="page-outcome" class="page">
+      <div class="page-toolbar">
+        <div class="filter-row">
+          <select class="sel" id="outcomeCatFilter"><option value="">Semua Kategori</option></select>
+          <select class="sel" id="outcomeWalletFilter"><option value="">Semua Rekening</option></select>
+        </div>
+        <button class="btn btn-primary" id="addOutcomeBtn">+ Tambah Pengeluaran</button>
+      </div>
+      <div class="table-panel">
+        <table class="dtable">
+          <thead><tr><th>Tanggal</th><th>Keterangan</th><th>Kategori</th><th>Rekening</th><th>Jumlah</th><th>Aksi</th></tr></thead>
+          <tbody id="outcomeTableBody"><tr><td colspan="6" class="empty-state">Belum ada pengeluaran</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ HUTANG & PIUTANG ══ -->
+    <section id="page-debt" class="page">
+      <div class="debt-tabs">
+        <button class="debt-tab active" data-tab="hutang">Hutang Saya</button>
+        <button class="debt-tab" data-tab="piutang">Piutang Saya</button>
+      </div>
+      <div id="tab-hutang" class="debt-tab-content active">
+        <div class="page-toolbar">
+          <span class="toolbar-info">Uang yang saya pinjam dari orang lain</span>
+          <button class="btn btn-primary" id="addHutangBtn">+ Tambah Hutang</button>
+        </div>
+        <div class="debt-cards" id="hutangList"><div class="empty-state">Belum ada hutang</div></div>
+      </div>
+      <div id="tab-piutang" class="debt-tab-content">
+        <div class="page-toolbar">
+          <span class="toolbar-info">Uang yang dipinjam orang lain dari saya</span>
+          <button class="btn btn-primary" id="addPiutangBtn">+ Tambah Piutang</button>
+        </div>
+        <div class="debt-cards" id="piutangList"><div class="empty-state">Belum ada piutang</div></div>
+      </div>
+    </section>
+
+    <!-- ══ TAGIHAN ══ -->
+    <section id="page-bills" class="page">
+      <div class="page-toolbar">
+        <select class="sel" id="billStatusFilter">
+          <option value="">Semua Status</option>
+          <option value="pending">Belum Bayar</option>
+          <option value="paid">Sudah Bayar</option>
+          <option value="overdue">Terlambat</option>
+        </select>
+        <button class="btn btn-primary" id="addBillBtn">+ Tambah Tagihan</button>
+      </div>
+      <div class="bills-grid" id="billsGrid"><div class="empty-state">Belum ada tagihan</div></div>
+    </section>
+
+    <!-- ══ ANGGARAN ══ -->
+    <section id="page-budget" class="page">
+      <div class="page-toolbar">
+        <span class="toolbar-info">Atur batas pengeluaran per kategori</span>
+        <button class="btn btn-primary" id="addBudgetBtn">+ Tambah Anggaran</button>
+      </div>
+      <div class="budget-list" id="budgetList"><div class="empty-state">Belum ada anggaran</div></div>
+    </section>
+
+    <!-- ══ TARGET TABUNGAN ══ -->
+    <section id="page-goals" class="page">
+      <div class="page-toolbar">
+        <span class="toolbar-info">Rencanakan dan capai tujuan keuanganmu</span>
+        <button class="btn btn-primary" id="addGoalBtn">+ Tambah Target</button>
+      </div>
+      <div class="goals-grid" id="goalsList"><div class="empty-state">Belum ada target tabungan</div></div>
+    </section>
+
+    <!-- ══ KALENDER ══ -->
+    <section id="page-calendar" class="page">
+      <div class="cal-header">
+        <button class="dr-arrow" id="calPrev">&#8592;</button>
+        <span class="cal-month-label" id="calMonthLabel">—</span>
+        <button class="dr-arrow" id="calNext">&#8594;</button>
+      </div>
+      <div class="cal-grid-header">
+        <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-detail" id="calDetail"></div>
+    </section>
+
+    <!-- ══ LAPORAN ══ -->
+    <section id="page-report" class="page">
+      <div class="report-filters">
+        <select class="sel" id="reportYear"></select>
+        <select class="sel" id="reportMonth">
+          <option value="">Semua Bulan</option>
+          <option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+          <option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+          <option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+          <option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+        </select>
+        <button class="btn btn-secondary" id="generateReport">Generate</button>
+        <button class="btn btn-secondary" id="exportCsvBtn">⬇ CSV</button>
+        <button class="btn btn-secondary" id="printReportBtn">🖨 Cetak</button>
+      </div>
+      <div class="report-summary" id="reportSummary">
+        <div class="report-card"><div class="report-label">Pemasukan</div><div class="report-value" id="rIncome" style="color:var(--income)">Rp 0</div></div>
+        <div class="report-card"><div class="report-label">Pengeluaran</div><div class="report-value" id="rOutcome" style="color:var(--outcome)">Rp 0</div></div>
+        <div class="report-card"><div class="report-label">Saldo Bersih</div><div class="report-value" id="rBalance">Rp 0</div></div>
+        <div class="report-card"><div class="report-label">Transaksi</div><div class="report-value" id="rCount">0</div></div>
+      </div>
+      <div class="panel" style="margin-top:20px">
+        <div class="panel-header"><h2>Pengeluaran per Kategori</h2></div>
+        <div id="reportCatList" class="report-cat-list"></div>
+      </div>
+    </section>
+
+    <!-- ══ PENGATURAN ══ -->
+    <section id="page-settings" class="page">
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3>Profil</h3>
+          <div class="form-group"><label>Nama</label><input type="text" id="settingName" class="finput" placeholder="Nama kamu"/></div>
+          <div class="form-group"><label>Mata Uang Utama</label>
+            <select class="finput" id="settingCurrency">
+              <option value="IDR">IDR — Rupiah</option>
+              <option value="USD">USD — Dollar</option>
+              <option value="SGD">SGD — Singapore Dollar</option>
+              <option value="EUR">EUR — Euro</option>
+              <option value="MYR">MYR — Ringgit</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="saveProfile">Simpan Profil</button>
+        </div>
+
+        <div class="settings-card">
+          <h3>Notifikasi Tagihan</h3>
+          <p class="settings-desc">Aktifkan reminder untuk mendapat notifikasi browser saat tagihan mendekati jatuh tempo.</p>
+          <button class="btn btn-secondary" id="enableNotifBtn">Aktifkan Notifikasi</button>
+          <div id="notifStatus" style="margin-top:10px;font-size:13px;color:var(--text2)"></div>
+        </div>
+
+        <div class="settings-card">
+          <h3>Kategori Kustom</h3>
+          <div class="form-group"><label>Tipe</label><select class="finput" id="catType"><option value="income">Pemasukan</option><option value="outcome">Pengeluaran</option></select></div>
+          <div class="form-group"><label>Nama Kategori</label>
+            <div class="input-row"><input type="text" id="catName" class="finput" placeholder="Nama kategori"/><button class="btn btn-primary" id="addCatBtn">+</button></div>
+          </div>
+          <div id="catList" class="cat-list"></div>
+        </div>
+
+        <div class="settings-card danger-card">
+          <h3>Data</h3>
+          <div class="settings-actions">
+            <button class="btn btn-secondary" id="exportData">⬇ Export JSON</button>
+            <label class="btn btn-secondary" for="importFile">⬆ Import JSON</label>
+            <input type="file" id="importFile" accept=".json" style="display:none"/>
+            <button class="btn btn-danger" id="resetData">⚠ Reset Semua Data</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-content -->
+</main>
+
+<!-- ══ BOTTOM NAV (mobile) ══ -->
+<nav class="bottom-nav" id="bottomNav">
+  <a href="#" class="bn-item active" data-page="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></a>
+  <a href="#" class="bn-item" data-page="income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></svg><span>Masuk</span></a>
+  <a href="#" class="bn-item bn-add" id="bottomAddBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Tambah</span></a>
+  <a href="#" class="bn-item" data-page="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/></svg><span>Keluar</span></a>
+  <a href="#" class="bn-item" data-page="bills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg><span>Tagihan</span></a>
+</nav>
+
+<!-- ══ MODAL ══ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Form</h2>
+      <button class="modal-close" id="modalClose">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
